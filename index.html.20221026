@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>surferlogic.github.io</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	</head>
+	<body>
+		<div class="w3-container w3-padding-48">
+        	<div class="w3-monospace w3-center">
+				<p>surferlogic.github.io</p>
+            </div>
+		</div>
+	</body>
+</html>

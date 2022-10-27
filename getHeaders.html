@@ -1,56 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<title>Browser Header Check</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<head>
-    <script>
-    function getHeaders() {
-	var req = new XMLHttpRequest();
-	req.open('GET', document.location, false);
-	req.send(null);
+<html>
+	<title>Browser Header Check</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<head>
+		<script>
+			function getHeaders() {
+				var req = new XMLHttpRequest();
+				req.open('GET', document.location, false);
+				req.send(null);
 
-	// associate array to store all values
-	var data = new Object();
+				// associate array to store all values
+				var data = new Object();
 
-	// get all headers in one call and parse each item
-	var headers = req.getAllResponseHeaders().toLowerCase();
-	var aHeaders = headers.split('\n');
-	var i =0;
-	for (i= 0; i < aHeaders.length; i++) {
-	    var thisItem = aHeaders[i];
-	    var key = thisItem.substring(0, thisItem.indexOf(':'));
-	    var value = thisItem.substring(thisItem.indexOf(':')+1);
-	    data[key] = value;
-	}
+				// get all headers in one call and parse each item
+				var headers = req.getAllResponseHeaders().toLowerCase();
+				var aHeaders = headers.split('\n');
+				var i =0;
+				for (i= 0; i < aHeaders.length; i++) {
+					var thisItem = aHeaders[i];
+					var key = thisItem.substring(0, thisItem.indexOf(':'));
+					var value = thisItem.substring(thisItem.indexOf(':')+1);
+					data[key] = value;
+				}
 
-	// get referer
-	var referer = document.referrer;
-	data["Referer"] = referer;
+				// get referer
+				var referer = document.referrer;
+				data["Referer"] = referer;
 
-	//get useragent
-	var useragent = navigator.userAgent;
-	data["User-Agent"] = useragent;
+				//get useragent
+				var useragent = navigator.userAgent;
+				data["User-Agent"] = useragent;
 
-
-	//extra code to display the values in html
-	var display = "";
-	for(var key in data) {
-	    if (key != "")
-		display += "<b>" + key + "</b> : " + data[key] + "<br>";
-	}
-	document.getElementById("dump").innerHTML =  display;
-    }
-    </script>
-</head>
-<style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
-</style>
-<body onload="getHeaders();">
-
-    <div id="dump">
-    data comes here
-    </div>
-</body>
+				//extra code to display the values in html
+				var display = "";
+				for(var key in data) {
+					if (key != "")
+					display += "<b>" + key + "</b> : " + data[key] + "<br>";
+				}
+				document.getElementById("dump").innerHTML =  display;
+			}
+		</script>
+		<style>
+			html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+		</style>
+	</head>
+	<body onload="getHeaders();">
+		<div id="dump">
+			data comes here
+		</div>
+	</body>
 </html>
